@@ -1,0 +1,74 @@
+<div class="search-container">
+  <h1>Mottu Front-end Challenge</h1>
+  <mat-form-field class="search-input">
+    <input matInput placeholder="Digite o nome do personagem" [formControl]="characterName" />
+  </mat-form-field>
+  <button mat-icon-button color="primary" class="icon-button" (click)="searchCharacters()">
+    Buscar<mat-icon>search</mat-icon>
+  </button>
+  <button mat-icon-button color="accent" class="icon-button" (click)="searchRandomCharacter()">Buscar aleatóriamente
+    <mat-icon>shuffle</mat-icon>
+  </button>
+
+  <div *ngIf="notFoundMessage; else characterList" class="not-found-message">
+    <p>{{ notFoundMessage }}</p>
+  </div>
+
+  <ng-template #characterList>
+    <div *ngFor="let character of displayedCharacters" class="character-card">
+      <mat-card>
+        <img mat-card-image [src]="character.image" alt="{{ character.name }}" />
+        <mat-card-content>
+          <p><strong>Name:</strong> {{ character.name }}</p>
+          <p><strong>Gender:</strong> {{ character.gender }}</p>
+          <p><strong>Status:</strong> {{ character.status }}</p>
+          <p><strong>Species:</strong> {{ character.species }}</p>
+          <p><strong>Origin:</strong> {{ character.origin?.name }}</p>
+          <button mat-button (click)="addToFavorites(character.name)">
+            <mat-icon>favorite</mat-icon>
+            Adicionar aos Favoritos
+          </button>
+          <div class="button-group">
+            <button mat-button (click)="downloadImage(character.image)">
+              <mat-icon>cloud_download</mat-icon>
+              Baixar Imagem
+            </button>
+          </div>
+        </mat-card-content>
+      </mat-card>
+    </div>
+
+    <mat-paginator
+      [length]="characterInfo?.length"
+      [pageSize]="pageSize"
+      (page)="pageChanged($event)"
+      class="paginator"
+    ></mat-paginator>
+
+    <div class="action-buttons">
+      <button mat-button (click)="toggleFavoritesView()">
+        <mat-icon>favorite</mat-icon>
+        Visualizar Favoritos
+      </button>
+      <button mat-button (click)="showAllFavorites()">
+        <mat-icon>star</mat-icon>
+        Mostrar Todos os Favoritos
+      </button>
+    </div>
+  </ng-template>
+
+  <div *ngIf="showFavorites || showAllFavoritesFlag" class="favorites-container">
+    <h2>Seus Favoritos</h2>
+    <div *ngFor="let favorite of favoriteCharacters$ | async" class="favorite-card">
+      <p>{{ favorite }}</p>
+      <button mat-button (click)="removeFavorite(favorite)">
+        <mat-icon>clear</mat-icon>
+        Remover
+      </button>
+    </div>
+    <button mat-button (click)="removeAllFavorites()">
+      <mat-icon>clear_all</mat-icon>
+      Remover Todos os Favoritos
+    </button>
+  </div>
+</div>

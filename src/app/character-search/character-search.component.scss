@@ -1,0 +1,103 @@
+.search-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 20px;
+
+  h1 {
+    font-family: 'Creepster', cursive;
+    font-weight: 400;
+    text-align: center;
+    margin-bottom: 20px;
+    margin: auto;
+  }
+
+  .search-input {
+    width: 100%;
+    max-width: 400px;
+    margin-bottom: 20px;
+  }
+
+  .icon-button {
+    margin-left: 10px;
+    margin-top: 10px;
+  }
+
+  .not-found-message {
+    color: red;
+    margin-top: 20px;
+  }
+
+  .character-card {
+    margin: 10px;
+
+    mat-card {
+      width: 300px;
+
+      img {
+        max-height: 200px;
+        object-fit: cover;
+      }
+
+      mat-card-content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        p {
+          margin-bottom: 10px;
+        }
+
+        button {
+          margin-top: 10px;
+        }
+      }
+    }
+  }
+
+  .paginator {
+    margin-top: 20px;
+  }
+
+  .action-buttons {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin-bottom: 20px;
+
+    button {
+      margin-top: 10px;
+    }
+  }
+
+  .favorites-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px;
+    background-color: rgba(255, 255, 255, 0.8);
+    border-radius: 10px;
+    padding: 20px;
+
+    h2 {
+      margin-bottom: 10px;
+    }
+
+    .favorite-card {
+      background-color: #f0f0f0;
+      border: 1px solid #ccc;
+      padding: 10px;
+      margin: 10px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 300px;
+
+      button {
+        background-color: #ff6666;
+        color: #fff;
+        margin-left: 10px;
+      }
+    }
+  }
+}
